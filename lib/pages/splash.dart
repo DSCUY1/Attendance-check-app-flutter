@@ -21,10 +21,10 @@ class _SplashState extends State<Splash> {
     _username = TextEditingController();
     _password = TextEditingController();
     print("init");
-    Timer(Duration(seconds: 5), () {
-      MaterialPageRoute route = MaterialPageRoute(builder: (_) => Login());
-      Navigator.push(context, route);
-    });
+    // Timer(Duration(seconds: 5), () {
+    //   MaterialPageRoute route = MaterialPageRoute(builder: (_) => Login());
+    //   Navigator.push(context, route);
+    // });
   }
 
   @override
@@ -41,41 +41,56 @@ class _SplashState extends State<Splash> {
     // to hide only status bar:
     //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.bottom]);
     // to hide both:
-    SystemChrome.setEnabledSystemUIOverlays ([]);
+    SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Center(
-            child: Container(
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Container(
-              margin: EdgeInsets.only(top: 50),
-              child: Image.asset('assets/images/logo.png')),
-          Container(
-            margin: EdgeInsets.only(top: 30),
-            child: Text(
-              "With me, simply mark your presence !!!\nThat's a fact. :)",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontFamily: "Roboto", fontSize: 17),
-            ),
+      body: Center(
+        child: Container(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(
+                  top: height * 0.1,
+                ),
+                child: Image.asset('assets/images/logo.png'),
+              ),
+              Container(
+                margin: EdgeInsets.only(
+                  top: height * 0.05,
+                ),
+                child: Text(
+                  "With me, simply mark your presence !!!\nThat's a fact. :)",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: "Roboto-Thin",
+                    fontSize: height * width * 0.00007,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(
+                  top: height * 0.4,
+                ),
+                child: Text(
+                  "Design by",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: "Roboto",
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Container(
+                height: height * 0.1,
+                width: width * 0.5,
+                child: Image.asset('assets/logos/DSC-Logo3.png'),
+              ),
+            ],
           ),
-          Container(
-            margin: EdgeInsets.only(top: 210),
-            child: Text(
-              "Design by",
-              textAlign: TextAlign.center,
-              style:
-                  TextStyle(fontFamily: "Roboto", fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-              height: height * 0.1,
-              width: width * 0.5,
-              child: Image.asset('assets/logos/DSC-Logo3.png')),
-        ],
+        ),
       ),
-    )));
+    );
   }
 }
