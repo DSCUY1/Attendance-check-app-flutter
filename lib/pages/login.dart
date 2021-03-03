@@ -37,66 +37,69 @@ class _LoginState extends State<Login> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+        // resizeToAvoidBottomInset: false,
         body: Center(
-      child: Column(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(top: 40),
-            child: Image.asset("assets/images/logo_mini.png"),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 60, left: 15),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Log in",
-              style: TextStyle(fontFamily: "Roboto-Regular", fontSize: 45),
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              // margin: EdgeInsets.only(top: 0),
+              child: Image.asset("assets/images/logo_mini.png"),
             ),
-          ),
-          Container(
-            width: width * 0.9,
-            margin: EdgeInsets.only(top: 40),
-            child: TextField(
-              controller: _username,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Username",
-                helperText: "Put your username",
-                suffix: Icon(Icons.person),
-              ),
-            ),
-          ),
-          Container(
-            width: width * 0.9,
-            margin: EdgeInsets.only(top: 20),
-            child: TextField(
-              controller: _password,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Password",
-                helperText: "Your password goes here",
-                suffix: Icon(Icons.remove_red_eye),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            width: width * 0.9,
-            height: height * 0.08,
-            child: RaisedButton(
-              color: Color(0xff6A4E77),
-              textColor: Colors.white,
+            Container(
+              margin: EdgeInsets.only(top: 40, left: 15),
+              alignment: Alignment.centerLeft,
               child: Text(
-                "LOGIN",
-                style: TextStyle(fontFamily: "Roboto-Regular", fontSize: 20),
+                "Log in",
+                style: TextStyle(fontFamily: "Roboto-Regular", fontSize: 45),
               ),
-              onPressed: () {
-                MaterialPageRoute route =
-                    MaterialPageRoute(builder: (_) => Home());
-                Navigator.push(context, route);
-              },
             ),
-          )
-        ],
+            Container(
+              width: width * 0.9,
+              margin: EdgeInsets.only(top: 20),
+              child: TextField(
+                controller: _username,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Username",
+                  helperText: "Put your username",
+                  suffix: Icon(Icons.person),
+                ),
+              ),
+            ),
+            Container(
+              width: width * 0.9,
+              margin: EdgeInsets.only(top: 20),
+              child: TextField(
+                controller: _password,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Password",
+                  helperText: "Your password goes here",
+                  suffix: Icon(Icons.remove_red_eye),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              width: width * 0.9,
+              height: height * 0.08,
+              child: RaisedButton(
+                color: Color(0xff6A4E77),
+                textColor: Colors.white,
+                child: Text(
+                  "LOGIN",
+                  style: TextStyle(fontFamily: "Roboto-Regular", fontSize: 20),
+                ),
+                onPressed: () {
+                  MaterialPageRoute route =
+                      MaterialPageRoute(builder: (_) => Home());
+                  Navigator.push(context, route);
+                },
+              ),
+            )
+          ],
+        ),
       ),
     ));
   }

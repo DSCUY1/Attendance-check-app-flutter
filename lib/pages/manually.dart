@@ -43,87 +43,147 @@ class _ManuallyState extends State<Manually> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Save Manually"),
+        backgroundColor: Color(0xff6A4E77),
+        leading: IconButton(
+          icon: Icon(Icons.menu_rounded, color: Colors.white),
+        ),
+        title: Text(
+          "Save manually",
+          style: TextStyle(
+            fontFamily: "Roboto-Rugular",
+          ),
+        ),
+        actions: <Widget>[
+          IconButton(
+            color: Colors.white,
+            icon: Icon(Icons.more_vert, color: Colors.white),
+          )
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xff6A4E77),
+        iconSize: 30,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.qr_code_scanner_outlined, color: Colors.white),
+            label: 'Scan a badge',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, color: Colors.white),
+            label: 'Manually',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.error, color: Colors.white),
+            label: 'Information',
+          ),
+        ],
       ),
       body: Center(
+        child: SingleChildScrollView(
           child: Column(children: <Widget>[
-        Container(
-            child: Text(
-          "Register",
-          style: TextStyle(
-              fontFamily: "Roboto", fontWeight: FontWeight.w400, fontSize: 30),
-        )),
-        Container(
-            child: Text(
-          "a new monitoring manually",
-          style: TextStyle(
-              fontFamily: "Roboto", fontWeight: FontWeight.w400, fontSize: 20),
-        )),
-        Container(
-          width: width * 0.9,
-          margin: EdgeInsets.only(top: 40),
-          child: TextField(
-            controller: _supervisor,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "Supervisor",
-              helperText: "Type and select the supervisor",
-              suffix: Text('Icon'),
+            Container(
+              margin: EdgeInsets.only(
+                left: width * 0.1,
+              ),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Register",
+                style: TextStyle(
+                  fontFamily: "Roboto-Regular",
+                  fontSize: 35,
+                ),
+              ),
             ),
-          ),
+            Container(
+              margin: EdgeInsets.only(
+                left: width * 0.1,
+              ),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "a new monitoring manually",
+                style: TextStyle(
+                  fontFamily: "Roboto-Thin",
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Container(
+              width: width * 0.9,
+              height: height * 0.1,
+              margin: EdgeInsets.only(top: 40),
+              child: TextField(
+                controller: _supervisor,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Supervisor",
+                  helperText: "Type and select the supervisor",
+                  suffix: Icon(Icons.person),
+                ),
+              ),
+            ),
+            Container(
+              width: width * 0.9,
+              height: height * 0.1,
+              margin: EdgeInsets.only(top: 10),
+              child: TextField(
+                controller: _room,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Room",
+                  helperText: "Select the room",
+                  suffix: Icon(Icons.room),
+                ),
+              ),
+            ),
+            Container(
+              width: width * 0.9,
+              height: height * 0.1,
+              margin: EdgeInsets.only(top: 10),
+              child: TextField(
+                controller: _date,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Date",
+                  helperText: "The date of the day",
+                  suffix: Icon(Icons.date_range),
+                ),
+              ),
+            ),
+            Container(
+              width: width * 0.9,
+              height: height * 0.1,
+              margin: EdgeInsets.only(top: 10),
+              child: TextField(
+                controller: _timeRange,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Time Range",
+                  helperText: "Select the time range",
+                  suffix: Icon(Icons.timelapse),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              width: width * 0.9,
+              height: height * 0.08,
+              child: RaisedButton(
+                color: Color(0xff6A4E77),
+                textColor: Colors.white,
+                child: Text(
+                  "SAVE",
+                  style: TextStyle(fontFamily: "Roboto-Regular", fontSize: 20),
+                ),
+                onPressed: () {
+                  MaterialPageRoute route =
+                      MaterialPageRoute(builder: (_) => Verification());
+                  Navigator.push(context, route);
+                },
+              ),
+            )
+          ]),
         ),
-        Container(
-          width: width * 0.9,
-          // margin: EdgeInsets.only(top: 40),
-          child: TextField(
-            controller: _room,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "Room",
-              helperText: "Select the room",
-              suffix: Text('Icon'),
-            ),
-          ),
-        ),
-        Container(
-          width: width * 0.9,
-          // margin: EdgeInsets.only(top: 40),
-          child: TextField(
-            controller: _date,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "Date",
-              helperText: "The date of the day",
-              suffix: Text('Icon'),
-            ),
-          ),
-        ),
-        Container(
-          width: width * 0.9,
-          // margin: EdgeInsets.only(top: 40),
-          child: TextField(
-            controller: _timeRange,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: "Time Range",
-              helperText: "Select the time range",
-              suffix: Text('Icon'),
-            ),
-          ),
-        ),
-        Container(
-          child: RaisedButton(
-            child: Text(
-              "SAVE",
-            ),
-            onPressed: () {
-              MaterialPageRoute route =
-                  MaterialPageRoute(builder: (_) => Verification());
-              Navigator.push(context, route);
-            },
-          ),
-        )
-      ])),
+      ),
     );
   }
 }
