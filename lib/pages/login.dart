@@ -49,10 +49,7 @@ class _LoginState extends State<Login> {
             alignment: Alignment.centerLeft,
             child: Text(
               "Log in",
-              style: TextStyle(
-                  fontFamily: "Roboto-Regular",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 45),
+              style: TextStyle(fontFamily: "Roboto-Regular", fontSize: 45),
             ),
           ),
           Container(
@@ -64,7 +61,7 @@ class _LoginState extends State<Login> {
                 border: OutlineInputBorder(),
                 labelText: "Username",
                 helperText: "Put your username",
-                suffix: Text('Icon'),
+                suffix: Icon(Icons.person),
               ),
             ),
           ),
@@ -77,7 +74,7 @@ class _LoginState extends State<Login> {
                 border: OutlineInputBorder(),
                 labelText: "Password",
                 helperText: "Your password goes here",
-                suffix: Text('Icon'),
+                suffix: Icon(Icons.remove_red_eye),
               ),
             ),
           ),
@@ -86,14 +83,11 @@ class _LoginState extends State<Login> {
             width: width * 0.9,
             height: height * 0.08,
             child: RaisedButton(
-              color: Colors.blue,
+              color: Color(0xff6A4E77),
               textColor: Colors.white,
               child: Text(
                 "LOGIN",
-                style: TextStyle(
-                    fontFamily: "Roboto-Regular",
-                    fontWeight: FontWeight.w300,
-                    fontSize: 20),
+                style: TextStyle(fontFamily: "Roboto-Regular", fontSize: 20),
               ),
               onPressed: () {
                 MaterialPageRoute route =
