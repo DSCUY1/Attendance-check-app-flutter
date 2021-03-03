@@ -33,7 +33,7 @@ class _LoginState extends State<Login> {
     // to hide only status bar:
     //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.bottom]);
     // to hide both:
-    SystemChrome.setEnabledSystemUIOverlays ([]);
+    SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -45,13 +45,14 @@ class _LoginState extends State<Login> {
             child: Image.asset("assets/images/logo_mini.png"),
           ),
           Container(
-            margin: EdgeInsets.only(top: 60),
+            margin: EdgeInsets.only(top: 60, left: 15),
+            alignment: Alignment.centerLeft,
             child: Text(
               "Log in",
               style: TextStyle(
-                  fontFamily: "Roboto",
+                  fontFamily: "Roboto-Regular",
                   fontWeight: FontWeight.w500,
-                  fontSize: 40),
+                  fontSize: 45),
             ),
           ),
           Container(
@@ -82,17 +83,21 @@ class _LoginState extends State<Login> {
           ),
           Container(
             margin: EdgeInsets.only(top: 20),
+            width: width * 0.9,
+            height: height * 0.08,
             child: RaisedButton(
+              color: Colors.blue,
+              textColor: Colors.white,
               child: Text(
                 "LOGIN",
                 style: TextStyle(
-                    fontFamily: "Roboto",
+                    fontFamily: "Roboto-Regular",
                     fontWeight: FontWeight.w300,
-                    color: Colors.white,
                     fontSize: 20),
               ),
               onPressed: () {
-                MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+                MaterialPageRoute route =
+                    MaterialPageRoute(builder: (_) => Home());
                 Navigator.push(context, route);
               },
             ),
