@@ -23,10 +23,13 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           backgroundColor: Color(0xff6A4E77),
           leading: IconButton(
-            icon: Icon(Icons.menu_rounded, color: Colors.white),
+            icon: Icon(
+              Icons.menu_rounded,
+              color: Colors.white,
+            ),
           ),
           title: Text(
-            "New Scan",
+            "Attendance Check App",
             style: TextStyle(
               fontFamily: "Roboto-Rugular",
             ),
@@ -34,24 +37,38 @@ class _HomeState extends State<Home> {
           actions: <Widget>[
             IconButton(
               color: Colors.white,
-              icon: Icon(Icons.more_vert, color: Colors.white),
+              icon: Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
             )
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Color(0xff6A4E77),
-          iconSize: 30,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white,
+          // iconSize: height * width * 0.0002,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.qr_code_scanner_outlined, color: Colors.white),
+              icon: Icon(
+                Icons.qr_code_scanner_outlined,
+                color: Colors.white,
+              ),
               label: 'Scan a badge',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Colors.white),
+              icon: Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
               label: 'Manually',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.error, color: Colors.white),
+              icon: Icon(
+                Icons.error,
+                color: Colors.white,
+              ),
               label: 'Information',
             ),
           ],
@@ -70,16 +87,24 @@ class _HomeState extends State<Home> {
           child: Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: height * 0.38),
+                margin: EdgeInsets.only(
+                  top: height * 0.3,
+                ),
                 child: Text(
                   "Hello & Welcome",
-                  style: TextStyle(fontFamily: "Roboto-Regular", fontSize: 30),
+                  style: TextStyle(
+                    fontFamily: "Roboto-Regular",
+                    fontSize: height * width * 0.00015,
+                  ),
                 ),
               ),
               Container(
                 child: Text(
                   "Tap on '+' button to scan a badge",
-                  style: TextStyle(fontFamily: "Roboto-Thin", fontSize: 20),
+                  style: TextStyle(
+                    fontFamily: "Roboto-Thin",
+                    fontSize: height * width * 0.0001,
+                  ),
                 ),
               )
             ],

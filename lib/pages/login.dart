@@ -31,13 +31,12 @@ class _LoginState extends State<Login> {
     // to hide only bottom bar:
     //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.top]);
     // to hide only status bar:
-    //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     // to hide both:
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    // SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        // resizeToAvoidBottomInset: false,
         body: Center(
       child: SingleChildScrollView(
         child: Column(
@@ -47,16 +46,24 @@ class _LoginState extends State<Login> {
               child: Image.asset("assets/images/logo_mini.png"),
             ),
             Container(
-              margin: EdgeInsets.only(top: 40, left: 15),
+              margin: EdgeInsets.only(
+                top: height * 0.08,
+                left: width * 0.05,
+              ),
               alignment: Alignment.centerLeft,
               child: Text(
                 "Log in",
-                style: TextStyle(fontFamily: "Roboto-Regular", fontSize: 45),
+                style: TextStyle(
+                  fontFamily: "Roboto-Regular",
+                  fontSize: height * width * 0.0002,
+                ),
               ),
             ),
             Container(
               width: width * 0.9,
-              margin: EdgeInsets.only(top: 20),
+              margin: EdgeInsets.only(
+                top: height * 0.04,
+              ),
               child: TextField(
                 controller: _username,
                 decoration: InputDecoration(
@@ -69,7 +76,9 @@ class _LoginState extends State<Login> {
             ),
             Container(
               width: width * 0.9,
-              margin: EdgeInsets.only(top: 20),
+              margin: EdgeInsets.only(
+                top: height * 0.025,
+              ),
               child: TextField(
                 controller: _password,
                 decoration: InputDecoration(
@@ -81,7 +90,9 @@ class _LoginState extends State<Login> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: EdgeInsets.only(
+                top: height * 0.04,
+              ),
               width: width * 0.9,
               height: height * 0.08,
               child: RaisedButton(
@@ -89,7 +100,10 @@ class _LoginState extends State<Login> {
                 textColor: Colors.white,
                 child: Text(
                   "LOGIN",
-                  style: TextStyle(fontFamily: "Roboto-Regular", fontSize: 20),
+                  style: TextStyle(
+                    fontFamily: "Roboto-Regular",
+                    fontSize: height * width * 0.00009,
+                  ),
                 ),
                 onPressed: () {
                   MaterialPageRoute route =
