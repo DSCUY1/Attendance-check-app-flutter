@@ -14,9 +14,9 @@ class _HomeState extends State<Home> {
     // to hide only bottom bar:
     //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.top]);
     // to hide only status bar:
-    //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     // to hide both:
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    // SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(

@@ -36,19 +36,22 @@ class _ManuallyState extends State<Manually> {
     // to hide only bottom bar:
     //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.top]);
     // to hide only status bar:
-    //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     // to hide both:
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    // SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff6A4E77),
         leading: IconButton(
-          icon: Icon(Icons.menu_rounded, color: Colors.white),
+          icon: Icon(
+            Icons.menu_rounded,
+            color: Colors.white,
+          ),
         ),
         title: Text(
-          "Save manually",
+          "Attendance Check App",
           style: TextStyle(
             fontFamily: "Roboto-Rugular",
           ),
@@ -56,24 +59,38 @@ class _ManuallyState extends State<Manually> {
         actions: <Widget>[
           IconButton(
             color: Colors.white,
-            icon: Icon(Icons.more_vert, color: Colors.white),
+            icon: Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
           )
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xff6A4E77),
-        iconSize: 30,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        // iconSize: 30,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code_scanner_outlined, color: Colors.white),
+            icon: Icon(
+              Icons.qr_code_scanner_outlined,
+              color: Colors.white,
+            ),
             label: 'Scan a badge',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.white),
+            icon: Icon(
+              Icons.home,
+              color: Colors.white,
+            ),
             label: 'Manually',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.error, color: Colors.white),
+            icon: Icon(
+              Icons.error,
+              color: Colors.white,
+            ),
             label: 'Information',
           ),
         ],
@@ -90,7 +107,7 @@ class _ManuallyState extends State<Manually> {
                 "Register",
                 style: TextStyle(
                   fontFamily: "Roboto-Regular",
-                  fontSize: 35,
+                  fontSize: height * width * 0.00015,
                 ),
               ),
             ),
@@ -103,14 +120,16 @@ class _ManuallyState extends State<Manually> {
                 "a new monitoring manually",
                 style: TextStyle(
                   fontFamily: "Roboto-Thin",
-                  fontSize: 20,
+                  fontSize: height * width * 0.0001,
                 ),
               ),
             ),
             Container(
               width: width * 0.9,
               height: height * 0.1,
-              margin: EdgeInsets.only(top: 40),
+              margin: EdgeInsets.only(
+                top: height * width * 0.0002,
+              ),
               child: TextField(
                 controller: _supervisor,
                 decoration: InputDecoration(
@@ -124,7 +143,9 @@ class _ManuallyState extends State<Manually> {
             Container(
               width: width * 0.9,
               height: height * 0.1,
-              margin: EdgeInsets.only(top: 10),
+              margin: EdgeInsets.only(
+                top: height * width * 0.00005,
+              ),
               child: TextField(
                 controller: _room,
                 decoration: InputDecoration(
@@ -138,7 +159,9 @@ class _ManuallyState extends State<Manually> {
             Container(
               width: width * 0.9,
               height: height * 0.1,
-              margin: EdgeInsets.only(top: 10),
+              margin: EdgeInsets.only(
+                top: height * width * 0.00005,
+              ),
               child: TextField(
                 controller: _date,
                 decoration: InputDecoration(
@@ -152,7 +175,9 @@ class _ManuallyState extends State<Manually> {
             Container(
               width: width * 0.9,
               height: height * 0.1,
-              margin: EdgeInsets.only(top: 10),
+              margin: EdgeInsets.only(
+                top: height * width * 0.00005,
+              ),
               child: TextField(
                 controller: _timeRange,
                 decoration: InputDecoration(
@@ -164,7 +189,9 @@ class _ManuallyState extends State<Manually> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: EdgeInsets.only(
+                top: height * width * 0.00005,
+              ),
               width: width * 0.9,
               height: height * 0.08,
               child: RaisedButton(
