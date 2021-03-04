@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projet_decanat/pages/login.dart';
 
-AppBar customizedAppBar() {
+AppBar customizedAppBar(BuildContext context) {
   return AppBar(
     backgroundColor: Color(0xff6A4E77),
     leading: IconButton(
@@ -22,7 +23,12 @@ AppBar customizedAppBar() {
           Icons.logout,
           color: Colors.white,
         ),
-      )
+        onPressed: () {
+          MaterialPageRoute route = MaterialPageRoute(builder: (_) => Login());
+          Navigator.pop(context);
+          Navigator.push(context, route);
+        },
+      ),
     ],
   );
 }

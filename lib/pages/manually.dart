@@ -62,7 +62,7 @@ class _ManuallyState extends State<Manually> {
         MaterialPageRoute(builder: (_) => Manually());
     MaterialPageRoute routeInfos = MaterialPageRoute(builder: (_) => Infos());
     return Scaffold(
-      appBar: customizedAppBar(),
+      appBar: customizedAppBar(context),
       bottomNavigationBar: customizedBottomNavigationBar(
           1, context, routeHome, routeManually, routeInfos),
       body: Center(

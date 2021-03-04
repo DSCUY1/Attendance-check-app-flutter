@@ -22,7 +22,7 @@ class Infos extends StatelessWidget {
         MaterialPageRoute(builder: (_) => Manually());
     MaterialPageRoute routeInfos = MaterialPageRoute(builder: (_) => Infos());
     return Scaffold(
-      appBar: customizedAppBar(),
+      appBar: customizedAppBar(context),
       bottomNavigationBar: customizedBottomNavigationBar(
           2, context, routeHome, routeManually, routeInfos),
       body: Center(),
