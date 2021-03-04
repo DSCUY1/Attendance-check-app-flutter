@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-BottomNavigationBar customizedBottomNavigationBar() {
+BottomNavigationBar customizedBottomNavigationBar(
+    int index,
+    BuildContext context,
+    MaterialPageRoute route0,
+    MaterialPageRoute route1,
+    MaterialPageRoute route2) {
   return BottomNavigationBar(
     backgroundColor: Color(0xff6A4E77),
+    currentIndex: index,
     selectedItemColor: Colors.white,
-    unselectedItemColor: Colors.white,
+    unselectedItemColor: Colors.white60,
     // iconSize: height * width * 0.0002,
     items: <BottomNavigationBarItem>[
       BottomNavigationBarItem(
@@ -29,5 +35,16 @@ BottomNavigationBar customizedBottomNavigationBar() {
         label: 'Information',
       ),
     ],
+    onTap: (int i) {
+      if (i == 0) {
+        Navigator.push(context, route0);
+      }
+      if (i == 1) {
+        Navigator.push(context, route1);
+      }
+      if (i == 2) {
+        Navigator.push(context, route2);
+      }
+    },
   );
 }

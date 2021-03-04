@@ -5,8 +5,11 @@ import 'package:projet_decanat/widgets/customized_app_bar.dart';
 import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
 import 'package:projet_decanat/widgets/customized_button.dart';
 import 'package:projet_decanat/widgets/customized_input.dart';
+import 'package:projet_decanat/widgets/infos.dart';
 import 'package:projet_decanat/widgets/subtitle_text.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
+
+import 'package:projet_decanat/pages/home.dart';
 
 class Manually extends StatefulWidget {
   Manually({Key key}) : super(key: key);
@@ -53,9 +56,15 @@ class _ManuallyState extends State<Manually> {
     // SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    MaterialPageRoute routeHome = MaterialPageRoute(builder: (_) => Home());
+    MaterialPageRoute routeManually =
+        MaterialPageRoute(builder: (_) => Manually());
+    MaterialPageRoute routeInfos = MaterialPageRoute(builder: (_) => Infos());
     return Scaffold(
       appBar: customizedAppBar(),
-      bottomNavigationBar: customizedBottomNavigationBar(),
+      bottomNavigationBar: customizedBottomNavigationBar(
+          1, context, routeHome, routeManually, routeInfos),
       body: Center(
         child: SingleChildScrollView(
           child: Column(children: <Widget>[

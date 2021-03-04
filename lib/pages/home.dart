@@ -4,6 +4,7 @@ import 'package:projet_decanat/pages/scanner_page.dart';
 import 'package:flutter/services.dart';
 import 'package:projet_decanat/widgets/customized_app_bar.dart';
 import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
+import 'package:projet_decanat/widgets/infos.dart';
 import 'package:projet_decanat/widgets/subtitle_text.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
 
@@ -24,9 +25,15 @@ class _HomeState extends State<Home> {
     // SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    MaterialPageRoute routeHome = MaterialPageRoute(builder: (_) => Home());
+    MaterialPageRoute routeManually =
+        MaterialPageRoute(builder: (_) => Manually());
+    MaterialPageRoute routeInfos = MaterialPageRoute(builder: (_) => Infos());
     return Scaffold(
       appBar: customizedAppBar(),
-      bottomNavigationBar: customizedBottomNavigationBar(),
+      bottomNavigationBar: customizedBottomNavigationBar(
+          0, context, routeHome, routeManually, routeInfos),
       floatingActionButton: FloatingActionButton(
         tooltip: 'New Scan',
         backgroundColor: Colors.red,

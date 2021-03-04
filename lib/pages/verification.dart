@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projet_decanat/pages/confirm.dart';
 import 'package:projet_decanat/pages/error_page.dart';
+import 'package:projet_decanat/pages/home.dart';
+import 'package:projet_decanat/pages/manually.dart';
 import 'package:projet_decanat/pages/scanner_page.dart';
 import 'package:projet_decanat/widgets/attribute_text.dart';
 import 'package:projet_decanat/widgets/customized_app_bar.dart';
 import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
 import 'package:projet_decanat/widgets/customized_button.dart';
+import 'package:projet_decanat/widgets/infos.dart';
 import 'package:projet_decanat/widgets/subtitle_text.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
 import 'package:projet_decanat/widgets/value_text.dart';
@@ -28,9 +31,15 @@ class _VerificationState extends State<Verification> {
     // SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+    MaterialPageRoute routeHome = MaterialPageRoute(builder: (_) => Home());
+    MaterialPageRoute routeManually =
+        MaterialPageRoute(builder: (_) => Manually());
+    MaterialPageRoute routeInfos = MaterialPageRoute(builder: (_) => Infos());
     return Scaffold(
       appBar: customizedAppBar(),
-      bottomNavigationBar: customizedBottomNavigationBar(),
+      bottomNavigationBar: customizedBottomNavigationBar(
+          0, context, routeHome, routeManually, routeInfos),
       body: Center(
         child: SingleChildScrollView(
           child: Column(children: <Widget>[
