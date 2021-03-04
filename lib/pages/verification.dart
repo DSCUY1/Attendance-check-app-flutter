@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projet_decanat/pages/confirm.dart';
 import 'package:projet_decanat/pages/error_page.dart';
+import 'package:projet_decanat/pages/scanner_page.dart';
 import 'package:projet_decanat/widgets/attribute_text.dart';
 import 'package:projet_decanat/widgets/customized_app_bar.dart';
 import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
@@ -96,7 +97,8 @@ class _VerificationState extends State<Verification> {
                         "RE_SCAN",
                         () {
                           MaterialPageRoute route =
-                              MaterialPageRoute(builder: (_) => ErrorPage());
+                              MaterialPageRoute(builder: (_) => ScannerPage());
+                          Navigator.pop(context);
                           Navigator.push(context, route);
                         },
                       ),
@@ -109,6 +111,7 @@ class _VerificationState extends State<Verification> {
                         () {
                           MaterialPageRoute route =
                               MaterialPageRoute(builder: (_) => Confirm());
+                          Navigator.pop(context);
                           Navigator.push(context, route);
                         },
                       ),

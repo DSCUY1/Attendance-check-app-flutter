@@ -12,6 +12,7 @@ class Confirm extends StatefulWidget {
 class _ConfirmState extends State<Confirm> {
   void changePage() {
     MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+    Navigator.pop(context);
     Navigator.push(context, route);
   }
 

@@ -40,6 +40,7 @@ class _ManuallyState extends State<Manually> {
 
   void changePage() {
     MaterialPageRoute route = MaterialPageRoute(builder: (_) => Verification());
+    Navigator.pop(context);
     Navigator.push(context, route);
   }
 

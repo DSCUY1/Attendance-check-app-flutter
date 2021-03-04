@@ -31,6 +31,7 @@ class _LoginState extends State<Login> {
 
   void changePage() {
     MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+    Navigator.pop(context);
     Navigator.push(context, route);
   }
 

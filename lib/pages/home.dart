@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_decanat/pages/manually.dart';
+import 'package:projet_decanat/pages/scanner_page.dart';
 import 'package:flutter/services.dart';
 import 'package:projet_decanat/widgets/customized_app_bar.dart';
 import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
@@ -32,7 +33,7 @@ class _HomeState extends State<Home> {
         child: Icon(Icons.add),
         onPressed: () {
           MaterialPageRoute route =
-              MaterialPageRoute(builder: (_) => Manually());
+              MaterialPageRoute(builder: (_) => ScannerPage());
           Navigator.push(context, route);
         },
       ),

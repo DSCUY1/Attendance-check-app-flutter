@@ -12,6 +12,7 @@ class ErrorPage extends StatefulWidget {
 class _ErrorPageState extends State<ErrorPage> {
   void changePage() {
     MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+    Navigator.pop(context);
     Navigator.push(context, route);
   }
 
