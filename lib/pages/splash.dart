@@ -23,6 +23,7 @@ class _SplashState extends State<Splash> {
     print("init");
     Timer(Duration(seconds: 3), () {
       MaterialPageRoute route = MaterialPageRoute(builder: (_) => Login());
+      Navigator.pop(context);
       Navigator.push(context, route);
     });
   }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projet_decanat/pages/home.dart';
 import 'package:flutter/services.dart';
+import 'package:projet_decanat/widgets/customized_button.dart';
+import 'package:projet_decanat/widgets/customized_input.dart';
+import 'package:projet_decanat/widgets/title_text.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -26,12 +29,17 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
+  void changePage() {
+    MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+    Navigator.push(context, route);
+  }
+
   @override
   Widget build(BuildContext context) {
     // to hide only bottom bar:
     //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.top]);
     // to hide only status bar:
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     // to hide both:
     // SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
@@ -51,27 +59,18 @@ class _LoginState extends State<Login> {
                 left: width * 0.05,
               ),
               alignment: Alignment.centerLeft,
-              child: Text(
-                "Log in",
-                style: TextStyle(
-                  fontFamily: "Roboto-Regular",
-                  fontSize: height * width * 0.0002,
-                ),
-              ),
+              child: TitleText("Log in"),
             ),
             Container(
               width: width * 0.9,
               margin: EdgeInsets.only(
                 top: height * 0.04,
               ),
-              child: TextField(
-                controller: _username,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Username",
-                  helperText: "Put your username",
-                  suffix: Icon(Icons.person),
-                ),
+              child: CustomizedInput(
+                _username,
+                "Username",
+                "Put your username",
+                Icon(Icons.person),
               ),
             ),
             Container(
@@ -79,13 +78,12 @@ class _LoginState extends State<Login> {
               margin: EdgeInsets.only(
                 top: height * 0.025,
               ),
-              child: TextField(
-                controller: _password,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Password",
-                  helperText: "Your password goes here",
-                  suffix: Icon(Icons.remove_red_eye),
+              child: CustomizedInput(
+                _password,
+                "Password",
+                "Your password goes here",
+                Icon(
+                  Icons.remove_red_eye,
                 ),
               ),
             ),
@@ -95,21 +93,9 @@ class _LoginState extends State<Login> {
               ),
               width: width * 0.9,
               height: height * 0.08,
-              child: RaisedButton(
-                color: Color(0xff6A4E77),
-                textColor: Colors.white,
-                child: Text(
-                  "LOGIN",
-                  style: TextStyle(
-                    fontFamily: "Roboto-Regular",
-                    fontSize: height * width * 0.00009,
-                  ),
-                ),
-                onPressed: () {
-                  MaterialPageRoute route =
-                      MaterialPageRoute(builder: (_) => Home());
-                  Navigator.push(context, route);
-                },
+              child: CustomizedButton(
+                "LOGIN",
+                changePage,
               ),
             )
           ],

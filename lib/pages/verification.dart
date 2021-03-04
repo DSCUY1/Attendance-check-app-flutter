@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:projet_decanat/pages/confirm.dart';
 import 'package:projet_decanat/pages/error_page.dart';
+import 'package:projet_decanat/widgets/attribute_text.dart';
+import 'package:projet_decanat/widgets/customized_app_bar.dart';
+import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
+import 'package:projet_decanat/widgets/customized_button.dart';
+import 'package:projet_decanat/widgets/subtitle_text.dart';
+import 'package:projet_decanat/widgets/title_text.dart';
+import 'package:projet_decanat/widgets/value_text.dart';
 
 class Verification extends StatefulWidget {
   Verification({Key key}) : super(key: key);
@@ -9,219 +17,100 @@ class Verification extends StatefulWidget {
 }
 
 class _VerificationState extends State<Verification> {
+  @override
   Widget build(BuildContext context) {
+    // to hide only bottom bar:
+    //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.top]);
+    // to hide only status bar:
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    // to hide both:
+    // SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff6A4E77),
-        title: Text(
-          "Verification",
-          style: TextStyle(
-            fontFamily: "Roboto-Rugular",
-          ),
-        ),
-        actions: <Widget>[
-          IconButton(
-            color: Colors.white,
-            icon: Icon(Icons.more_vert, color: Colors.white),
-          )
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xff6A4E77),
-        iconSize: 30,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code_scanner_outlined, color: Colors.white),
-            label: 'Scan a badge',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.white),
-            label: 'Manually',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.error, color: Colors.white),
-            label: 'Information',
-          ),
-        ],
-      ),
+      appBar: customizedAppBar(),
+      bottomNavigationBar: customizedBottomNavigationBar(),
       body: Center(
         child: SingleChildScrollView(
           child: Column(children: <Widget>[
             Container(
-              child: Text(
-                "Verify, then validate",
-                style: TextStyle(
-                  fontFamily: "Roboto-Regular",
-                  fontSize: 35,
-                ),
-              ),
+              child: TitleText("Verify, then validate"),
             ),
             Container(
-              child: Text(
+              child: SubtitleText(
                 "if these informations are corrects,\nplease presse 'Confirm' button",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.red,
-                  fontFamily: "Roboto-Thin",
-                  fontSize: 16,
-                ),
+                color: Colors.red,
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 50),
+              margin: EdgeInsets.only(
+                top: height * 0.08,
+              ),
               width: width * 0.9,
               child: Table(
                 children: <TableRow>[
                   TableRow(
-                    // decoration: Decoration(),
                     children: <Widget>[
-                      Text(
-                        "Supervisor:",
-                        style: TextStyle(
-                          fontFamily: "Roboto-Regular",
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        "Abdel Aziz MFOSSA",
-                        style: TextStyle(
-                          fontFamily: "Roboto-Thin",
-                          fontWeight: FontWeight.w200,
-                          fontSize: 17,
-                        ),
-                      ),
+                      AttributeText("Supervisor:"),
+                      ValueText("Abdel Aziz MFOSSA"),
                     ],
                   ),
                   TableRow(
-                    // decoration: Decoration(),
                     children: <Widget>[
-                      Text(
-                        "Code:",
-                        style: TextStyle(
-                          fontFamily: "Roboto-Regular",
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        "103",
-                        style: TextStyle(
-                          fontFamily: "Roboto-Thin",
-                          fontWeight: FontWeight.w200,
-                          fontSize: 17,
-                        ),
-                      ),
+                      AttributeText("Code:"),
+                      ValueText("103"),
                     ],
                   ),
                   TableRow(
-                    // decoration: Decoration(),
                     children: <Widget>[
-                      Text(
-                        "Date:",
-                        style: TextStyle(
-                          fontFamily: "Roboto-Regular",
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        "2/24/21",
-                        style: TextStyle(
-                          fontFamily: "Roboto-Thin",
-                          fontWeight: FontWeight.w200,
-                          fontSize: 17,
-                        ),
-                      )
+                      AttributeText("Date:"),
+                      ValueText("2/24/21")
                     ],
                   ),
                   TableRow(
-                    // decoration: Decoration(),
                     children: <Widget>[
-                      Text(
-                        "Room:",
-                        style: TextStyle(
-                          fontFamily: "Roboto-Regular",
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        "NB4",
-                        style: TextStyle(
-                          fontFamily: "Roboto-Thin",
-                          fontWeight: FontWeight.w200,
-                          fontSize: 17,
-                        ),
-                      )
+                      AttributeText("Room:"),
+                      ValueText("NB4")
                     ],
                   ),
                   TableRow(
-                    // decoration: Decoration(),
                     children: <Widget>[
-                      Text(
-                        "Time range:",
-                        style: TextStyle(
-                          fontFamily: "Roboto-regular",
-                          fontSize: 20,
-                        ),
-                      ),
-                      Text(
-                        "2pm - 4pm",
-                        style: TextStyle(
-                          fontFamily: "Roboto-Thin",
-                          fontWeight: FontWeight.w200,
-                          fontSize: 17,
-                        ),
-                      ),
+                      AttributeText("Time range:"),
+                      ValueText("2pm - 4pm"),
                     ],
                   ),
                 ],
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: 30),
+                margin: EdgeInsets.only(
+                  top: height * 0.05,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.only(top: 20),
                       width: width * 0.4,
                       height: height * 0.08,
-                      child: RaisedButton(
-                        color: Color(0xff6A4E77),
-                        textColor: Colors.white,
-                        onPressed: () {
+                      child: CustomizedButton(
+                        "RE_SCAN",
+                        () {
                           MaterialPageRoute route =
                               MaterialPageRoute(builder: (_) => ErrorPage());
                           Navigator.push(context, route);
                         },
-                        child: Text(
-                          "RE-SCAN",
-                          style: TextStyle(
-                              fontFamily: "Roboto-Regular", fontSize: 20),
-                        ),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 20),
                       width: width * 0.4,
                       height: height * 0.08,
-                      child: RaisedButton(
-                        color: Color(0xff6A4E77),
-                        textColor: Colors.white,
-                        onPressed: () {
+                      child: CustomizedButton(
+                        "CONFIRM",
+                        () {
                           MaterialPageRoute route =
                               MaterialPageRoute(builder: (_) => Confirm());
                           Navigator.push(context, route);
                         },
-                        child: Text(
-                          "CONFIRM",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: "Roboto",
-                            fontWeight: FontWeight.w400,
-                            fontSize: 23,
-                          ),
-                        ),
                       ),
                     )
                   ],
