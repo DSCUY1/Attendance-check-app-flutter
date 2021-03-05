@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:projet_decanat/widgets/customized_button.dart';
 import 'package:projet_decanat/widgets/customized_input.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
+import 'package:projet_decanat/services/http_helper.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -12,27 +13,35 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController _username;
+  TextEditingController _email;
   TextEditingController _password;
 
   @override
   void initState() {
     super.initState();
-    _username = TextEditingController();
+    _email = TextEditingController();
     _password = TextEditingController();
   }
 
   @override
   void dispose() {
-    _username.dispose();
+    _email.dispose();
     _password.dispose();
     super.dispose();
   }
 
-  void changePage() {
-    MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
-    Navigator.pop(context);
-    Navigator.push(context, route);
+  void login() {
+    String emailIn = _email.text;
+    String passwordIn = _password.text;
+    print("email: $emailIn");
+    print("password: $passwordIn");
+    HttpHelper.logIn(emailIn, passwordIn).then((response) {
+      if (response == "OK") {
+        MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+        Navigator.pop(context);
+        Navigator.push(context, route);
+      } else {}
+    });
   }
 
   @override
@@ -68,9 +77,9 @@ class _LoginState extends State<Login> {
                 top: height * 0.04,
               ),
               child: CustomizedInput(
-                _username,
-                "Username",
-                "Put your username",
+                _email,
+                "Email",
+                "Put your email address",
                 Icon(Icons.person),
               ),
             ),
@@ -96,7 +105,7 @@ class _LoginState extends State<Login> {
               height: height * 0.08,
               child: CustomizedButton(
                 "LOGIN",
-                changePage,
+                login,
               ),
             )
           ],
