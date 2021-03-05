@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class HttpHelper {
-  static String host = "http://192.168.225.201:8000/";
+  static String host = "http://192.168.43.11:8000/";
   static String loginUrl = 'api/users/signin';
   static String urlBase = '';
   static String urlUpcoming = '';

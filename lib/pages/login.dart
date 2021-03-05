@@ -3,6 +3,7 @@ import 'package:projet_decanat/pages/home.dart';
 import 'package:flutter/services.dart';
 import 'package:projet_decanat/widgets/customized_button.dart';
 import 'package:projet_decanat/widgets/customized_input.dart';
+import 'package:projet_decanat/widgets/dialog_show.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
 import 'package:projet_decanat/services/http_helper.dart';
 
@@ -35,13 +36,21 @@ class _LoginState extends State<Login> {
     String passwordIn = _password.text;
     print("email: $emailIn");
     print("password: $passwordIn");
-    HttpHelper.logIn(emailIn, passwordIn).then((response) {
-      if (response == "OK") {
-        MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
-        Navigator.pop(context);
-        Navigator.push(context, route);
-      } else {}
-    });
+    HttpHelper.logIn(emailIn, passwordIn).then(
+      (response) {
+        if (response == "OK") {
+          MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+          Navigator.pop(context);
+          Navigator.push(context, route);
+        } else {
+          DialogShow dialog = DialogShow(
+            "Erreur",
+            "Parametres invalides",
+          );
+          dialog.showdialog(context);
+        }
+      },
+    );
   }
 
   @override
