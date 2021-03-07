@@ -42,7 +42,9 @@ class _ManuallyState extends State<Manually> {
   }
 
   void changePage() {
-    MaterialPageRoute route = MaterialPageRoute(builder: (_) => Verification());
+    MaterialPageRoute route = MaterialPageRoute(
+        builder: (_) => Verification(
+            "Abdel Aziz MFOSSA", "103", "2/24/21", "NB4", "2pm - 4pm"));
     Navigator.pop(context);
     Navigator.push(context, route);
   }

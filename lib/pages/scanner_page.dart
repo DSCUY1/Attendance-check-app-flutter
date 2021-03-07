@@ -3,8 +3,12 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:projet_decanat/pages/error_page.dart';
 import 'package:projet_decanat/pages/verification.dart';
+import 'package:projet_decanat/widgets/dialog_show.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:projet_decanat/services/http_helper.dart';
 
 class ScannerPage extends StatefulWidget {
   const ScannerPage({Key key}) : super(key: key);
@@ -36,10 +40,28 @@ class _ScannerPageState extends State<ScannerPage> {
         String data = result.code;
         print("format: $format");
         print("code: $data");
-        MaterialPageRoute route =
-            MaterialPageRoute(builder: (_) => Verification());
-        Navigator.pop(context);
-        Navigator.push(context, route);
+        HttpHelper.checkSupervisor(data).then(
+          (response) {
+            if (response.length != 0) {
+              MaterialPageRoute route = MaterialPageRoute(
+                builder: (_) => Verification(
+                  response["supervisor"],
+                  response["code"],
+                  response["date"],
+                  response["room"],
+                  response["timerange"],
+                ),
+              );
+              Navigator.pop(context);
+              Navigator.push(context, route);
+            } else {
+              MaterialPageRoute route =
+                  MaterialPageRoute(builder: (_) => ErrorPage());
+              Navigator.pop(context);
+              Navigator.push(context, route);
+            }
+          },
+        );
         result = null;
       }
     });

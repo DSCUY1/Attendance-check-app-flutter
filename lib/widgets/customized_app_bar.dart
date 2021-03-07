@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_decanat/pages/login.dart';
+import 'package:projet_decanat/services/http_helper.dart';
 
 AppBar customizedAppBar(BuildContext context) {
   return AppBar(
@@ -24,9 +25,18 @@ AppBar customizedAppBar(BuildContext context) {
           color: Colors.white,
         ),
         onPressed: () {
-          MaterialPageRoute route = MaterialPageRoute(builder: (_) => Login());
-          Navigator.pop(context);
-          Navigator.push(context, route);
+          HttpHelper.logOut().then(
+            (response) {
+              if (response == "OK") {
+                MaterialPageRoute route =
+                    MaterialPageRoute(builder: (_) => Login());
+                Navigator.pop(context);
+                Navigator.push(context, route);
+              } else {
+                print("Impossible de logout");
+              }
+            },
+          );
         },
       ),
     ],

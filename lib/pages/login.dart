@@ -39,13 +39,40 @@ class _LoginState extends State<Login> {
     HttpHelper.logIn(emailIn, passwordIn).then(
       (response) {
         if (response == "OK") {
-          MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
-          Navigator.pop(context);
-          Navigator.push(context, route);
+          currentuser();
+          // MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+          // Navigator.pop(context);
+          // Navigator.push(context, route);
         } else {
           DialogShow dialog = DialogShow(
             "Erreur",
             "Parametres invalides",
+          );
+          dialog.showdialog(context);
+        }
+      },
+    );
+  }
+
+  void currentuser() {
+    HttpHelper.currentUser().then(
+      (response) {
+        if (response["statut"] == "OK") {
+          if (response["response"] == "2") {
+            MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+            Navigator.pop(context);
+            Navigator.push(context, route);
+          } else {
+            DialogShow dialog = DialogShow(
+              "Erreur",
+              "Vous n'etes pas un controller",
+            );
+            dialog.showdialog(context);
+          }
+        } else {
+          DialogShow dialog = DialogShow(
+            "Erreur",
+            "Probleme de currentUser",
           );
           dialog.showdialog(context);
         }

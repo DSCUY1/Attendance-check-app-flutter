@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projet_decanat/pages/confirm.dart';
-import 'package:projet_decanat/pages/error_page.dart';
 import 'package:projet_decanat/pages/home.dart';
 import 'package:projet_decanat/pages/manually.dart';
 import 'package:projet_decanat/pages/scanner_page.dart';
@@ -13,14 +12,31 @@ import 'package:projet_decanat/widgets/infos.dart';
 import 'package:projet_decanat/widgets/subtitle_text.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
 import 'package:projet_decanat/widgets/value_text.dart';
+import 'package:projet_decanat/services/http_helper.dart';
 
-class Verification extends StatefulWidget {
-  Verification({Key key}) : super(key: key);
-  @override
-  _VerificationState createState() => _VerificationState();
-}
+class Verification extends StatelessWidget {
+  final String supervisor;
+  final String code;
+  final String date;
+  final String room;
+  final String timerange;
+  Verification(this.supervisor, this.code, this.date, this.room, this.timerange,
+      {Key key})
+      : super(key: key);
 
-class _VerificationState extends State<Verification> {
+  void confirm(BuildContext context) {
+    HttpHelper.markSupervisor(this.code).then(
+      (response) {
+        if (response == "OK") {
+          MaterialPageRoute route =
+              MaterialPageRoute(builder: (_) => Confirm());
+          Navigator.pop(context);
+          Navigator.push(context, route);
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // to hide only bottom bar:
@@ -62,31 +78,25 @@ class _VerificationState extends State<Verification> {
                   TableRow(
                     children: <Widget>[
                       AttributeText("Supervisor:"),
-                      ValueText("Abdel Aziz MFOSSA"),
+                      ValueText(supervisor),
                     ],
                   ),
                   TableRow(
                     children: <Widget>[
                       AttributeText("Code:"),
-                      ValueText("103"),
+                      ValueText(code),
                     ],
                   ),
                   TableRow(
-                    children: <Widget>[
-                      AttributeText("Date:"),
-                      ValueText("2/24/21")
-                    ],
+                    children: <Widget>[AttributeText("Date:"), ValueText(date)],
                   ),
                   TableRow(
-                    children: <Widget>[
-                      AttributeText("Room:"),
-                      ValueText("NB4")
-                    ],
+                    children: <Widget>[AttributeText("Room:"), ValueText(room)],
                   ),
                   TableRow(
                     children: <Widget>[
                       AttributeText("Time range:"),
-                      ValueText("2pm - 4pm"),
+                      ValueText(timerange),
                     ],
                   ),
                 ],
@@ -118,10 +128,7 @@ class _VerificationState extends State<Verification> {
                       child: CustomizedButton(
                         "CONFIRM",
                         () {
-                          MaterialPageRoute route =
-                              MaterialPageRoute(builder: (_) => Confirm());
-                          Navigator.pop(context);
-                          Navigator.push(context, route);
+                          confirm(context);
                         },
                       ),
                     )
