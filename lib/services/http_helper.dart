@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:projet_decanat/services/parameter.dart';
 
 class HttpHelper {
-  static String host = "http://192.168.43.11:8000/";
+  static String host = "http://192.168.8.104:8000/";
   // static String host = "https://attendceappuy1.herokuapp.com/";
   static String loginUrl = 'api/users/signin';
   static String currentUsrUrl = "api/users/currentuser";
@@ -28,6 +28,7 @@ class HttpHelper {
         response = "OK";
         print(result.headers['set-cookie']);
         Parameter.cookie = result.headers['set-cookie'];
+        // print(Parameter.cookie);
       } else {
         print("status different de 200");
       }
@@ -50,6 +51,7 @@ class HttpHelper {
       if (200 == result.statusCode) {
         print("le statut est egale a 200");
         response = "OK";
+        Parameter.welcome = false;
       } else {
         print("status different de 200");
       }
@@ -69,12 +71,17 @@ class HttpHelper {
       final result = await http.get(url, headers: {"cookie": Parameter.cookie});
       print("reponse: ${result.body}");
       if (200 == result.statusCode) {
-        print(result.body);
+        // print(result.body);
         print("le statut est egale a 200");
         Map<String, dynamic> jsonMap = jsonDecode(result.body);
         response['statut'] = "OK";
         response['response'] = "${jsonMap["data"]["role"]["id"]}";
         print(jsonMap["data"]["role"]["id"]);
+        Parameter.first_name = jsonMap["data"]["first_name"];
+        Parameter.last_name = jsonMap["data"]["last_name"];
+        Parameter.email = jsonMap["data"]["email"];
+        Parameter.matricule = jsonMap["data"]["matricule"];
+        Parameter.phone = jsonMap["data"]["phone"];
       } else {
         print("status different de 200");
       }
@@ -88,6 +95,7 @@ class HttpHelper {
 
   static Future<Map<String, dynamic>> checkSupervisor(String code) async {
     Map<String, dynamic> response = Map<String, dynamic>();
+    response["statut"] = "";
     try {
       String url = host + checkSupervisorUrl + "/" + code;
       print("url: $url");
@@ -96,18 +104,34 @@ class HttpHelper {
       if (200 == result.statusCode) {
         print("le statut est egale a 200");
         Map<String, dynamic> jsonMap = jsonDecode(result.body);
-        response["supervisor"] = jsonMap["surv"]["name"];
-        response["code"] = "${jsonMap["surv"]["id"]}";
-        response["date"] = "ce jour";
-        response["room"] = jsonMap["salle"]["code"];
-        response["timerange"] =
-            jsonMap["Horaire"]["begin"] + " - " + jsonMap["Horaire"]["end"];
+        if (result.body == '{"message":"Utilisateur invalide"}') {
+          response["response"] = jsonMap["message"];
+        } else {
+          if (result.body ==
+              '{"message":"surveillant ne doit pas surveiller"}') {
+            response["response"] = jsonMap["message"];
+          } else {
+            response["statut"] = "OK";
+            response["supervisor"] = jsonMap["surv"]["name"];
+            response["code"] = "${jsonMap["surv"]["id"]}";
+            response["date"] = "ce jour";
+            response["room"] = jsonMap["salle"]["code"];
+            response["timerange"] =
+                jsonMap["Horaire"]["begin"] + " - " + jsonMap["Horaire"]["end"];
+          }
+        }
       } else {
-        print("status different de 200");
+        if (404 == result.statusCode) {
+          response["response"] = "Code invalide";
+        } else {
+          print("status different de 200");
+          response["response"] = "Erreur reseau ${result.statusCode}";
+        }
       }
     } catch (e) {
-      print("exception lors current user");
+      print("exception lors check supervisor");
       print(e);
+      response["response"] = "Unknow error";
       // response = e.toString();
     }
     return response;

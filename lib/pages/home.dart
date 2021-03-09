@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:projet_decanat/pages/manually.dart';
 import 'package:projet_decanat/pages/scanner_page.dart';
 import 'package:flutter/services.dart';
+import 'package:projet_decanat/services/parameter.dart';
 import 'package:projet_decanat/widgets/customized_app_bar.dart';
 import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
+import 'package:projet_decanat/widgets/dialog_show.dart';
 import 'package:projet_decanat/widgets/infos.dart';
 import 'package:projet_decanat/widgets/subtitle_text.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
@@ -15,6 +19,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    if (!Parameter.welcome) {
+      Timer(Duration(milliseconds: 500), () {
+        DialogShow dialog = DialogShow(
+          "Welcome",
+          Parameter.first_name,
+          color: Colors.black,
+        );
+        dialog.showdialog(context);
+        Parameter.welcome = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // to hide only bottom bar:

@@ -4,16 +4,14 @@ import 'package:projet_decanat/pages/home.dart';
 import 'package:projet_decanat/widgets/customized_button.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
 
-class ErrorPage extends StatefulWidget {
-  ErrorPage({Key key}) : super(key: key);
-  _ErrorPageState createState() => _ErrorPageState();
-}
+class ErrorPage extends StatelessWidget {
+  final String message;
+  ErrorPage({this.message, key}) : super(key: key);
 
-class _ErrorPageState extends State<ErrorPage> {
-  void changePage() {
-    MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+  void changePage(BuildContext context) {
+    // MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
     Navigator.pop(context);
-    Navigator.push(context, route);
+    // Navigator.push(context, route);
   }
 
   @override
@@ -35,7 +33,7 @@ class _ErrorPageState extends State<ErrorPage> {
                 // margin: EdgeInsets.only(
                 //     // top: 150,
                 //     ),
-                child: TitleText("Not recognized"),
+                child: TitleText((this.message == null) ? "Not recognized" : this.message),
               ),
               Container(
                 height: height * 0.25,
@@ -53,7 +51,7 @@ class _ErrorPageState extends State<ErrorPage> {
                 ),
                 child: CustomizedButton(
                   "+ HOME",
-                  changePage,
+                  () => changePage(context),
                 ),
               ),
             ],

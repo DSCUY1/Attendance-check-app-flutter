@@ -37,13 +37,13 @@ BottomNavigationBar customizedBottomNavigationBar(
     ],
     onTap: (int i) {
       if (i == 0) {
-        Navigator.push(context, route0);
+        Navigator.pushReplacement(context, route0);
       }
       if (i == 1) {
-        Navigator.push(context, route1);
+        Navigator.pushReplacement(context, route1);
       }
       if (i == 2) {
-        Navigator.push(context, route2);
+        Navigator.pushReplacement(context, route2);
       }
     },
   );

@@ -42,7 +42,7 @@ class _ScannerPageState extends State<ScannerPage> {
         print("code: $data");
         HttpHelper.checkSupervisor(data).then(
           (response) {
-            if (response.length != 0) {
+            if (response["statut"] == "OK") {
               MaterialPageRoute route = MaterialPageRoute(
                 builder: (_) => Verification(
                   response["supervisor"],
@@ -52,11 +52,12 @@ class _ScannerPageState extends State<ScannerPage> {
                   response["timerange"],
                 ),
               );
-              Navigator.pop(context);
+              Navigator.pop(context, );
               Navigator.push(context, route);
             } else {
-              MaterialPageRoute route =
-                  MaterialPageRoute(builder: (_) => ErrorPage());
+              MaterialPageRoute route = MaterialPageRoute(
+                builder: (_) => ErrorPage(message: response["response"]),
+              );
               Navigator.pop(context);
               Navigator.push(context, route);
             }

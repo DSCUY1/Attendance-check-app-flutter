@@ -45,8 +45,8 @@ class _ManuallyState extends State<Manually> {
     MaterialPageRoute route = MaterialPageRoute(
         builder: (_) => Verification(
             "Abdel Aziz MFOSSA", "103", "2/24/21", "NB4", "2pm - 4pm"));
-    Navigator.pop(context);
-    Navigator.push(context, route);
+    // Navigator.pop(context);
+    Navigator.pushReplacement(context, route);
   }
 
   Widget build(BuildContext context) {
@@ -95,6 +95,7 @@ class _ManuallyState extends State<Manually> {
                 "Supervisor",
                 "Type and select the supervisor",
                 Icon(Icons.person),
+                obscurcir: false,
               ),
             ),
             Container(
@@ -108,6 +109,7 @@ class _ManuallyState extends State<Manually> {
                 "Room",
                 "Select the room",
                 Icon(Icons.room),
+                obscurcir: false,
               ),
             ),
             Container(
@@ -121,6 +123,7 @@ class _ManuallyState extends State<Manually> {
                 "Date",
                 "The date of the day",
                 Icon(Icons.date_range),
+                obscurcir: false,
               ),
             ),
             Container(
@@ -134,6 +137,7 @@ class _ManuallyState extends State<Manually> {
                 "Time range",
                 "Select the time range",
                 Icon(Icons.timelapse),
+                obscurcir: false,
               ),
             ),
             Container(

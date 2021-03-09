@@ -6,7 +6,8 @@ import 'package:projet_decanat/widgets/subtitle_text.dart';
 class DialogShow {
   final String title;
   final String description;
-  DialogShow(this.title, this.description);
+  final Color color;
+  DialogShow(this.title, this.description, {this.color});
   Future<Null> showdialog(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -15,7 +16,7 @@ class DialogShow {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return new SimpleDialog(
-          title: new Center(child: TitleText(title, color: Colors.red)),
+          title: new Center(child: TitleText(title, color: (this.color == null) ? Colors.red : this.color)),
           contentPadding: EdgeInsets.all(height * width * 0.00005),
           children: <Widget>[
             new Container(

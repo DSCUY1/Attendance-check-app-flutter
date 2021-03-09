@@ -30,8 +30,8 @@ class Verification extends StatelessWidget {
         if (response == "OK") {
           MaterialPageRoute route =
               MaterialPageRoute(builder: (_) => Confirm());
-          Navigator.pop(context);
-          Navigator.push(context, route);
+          // Navigator.pop(context);
+          Navigator.pushReplacement(context, route);
         }
       },
     );

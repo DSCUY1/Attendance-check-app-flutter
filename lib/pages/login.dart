@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_decanat/pages/home.dart';
 import 'package:flutter/services.dart';
+import 'package:projet_decanat/services/parameter.dart';
 import 'package:projet_decanat/widgets/customized_button.dart';
 import 'package:projet_decanat/widgets/customized_input.dart';
 import 'package:projet_decanat/widgets/dialog_show.dart';
@@ -16,12 +17,16 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController _email;
   TextEditingController _password;
+  bool obscurciInput;
+  Icon eye;
 
   @override
   void initState() {
     super.initState();
     _email = TextEditingController();
     _password = TextEditingController();
+    obscurciInput = true;
+    eye = Icon(Icons.remove_red_eye);
   }
 
   @override
@@ -32,6 +37,9 @@ class _LoginState extends State<Login> {
   }
 
   void login() {
+    // MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+    // Navigator.pop(context);
+    // Navigator.push(context, route);
     String emailIn = _email.text;
     String passwordIn = _password.text;
     print("email: $emailIn");
@@ -117,6 +125,7 @@ class _LoginState extends State<Login> {
                 "Email",
                 "Put your email address",
                 Icon(Icons.person),
+                obscurcir: false,
               ),
             ),
             Container(
@@ -128,9 +137,18 @@ class _LoginState extends State<Login> {
                 _password,
                 "Password",
                 "Your password goes here",
-                Icon(
-                  Icons.remove_red_eye,
+                GestureDetector(
+                  child: eye,
+                  onTap: () {
+                    setState(() {
+                      obscurciInput = !obscurciInput;
+                      eye = (obscurciInput)
+                          ? Icon(Icons.remove_red_eye)
+                          : Icon(Icons.lock); //TODO: changer l'icone
+                    });
+                  },
                 ),
+                obscurcir: obscurciInput,
               ),
             ),
             Container(
