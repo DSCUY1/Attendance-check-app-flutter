@@ -5,12 +5,15 @@ import 'package:projet_decanat/services/http_helper.dart';
 AppBar customizedAppBar(BuildContext context) {
   return AppBar(
     backgroundColor: Color(0xff6A4E77),
-    leading: IconButton(
-      icon: Icon(
-        Icons.menu_rounded,
-        color: Colors.white,
-      ),
-    ),
+    // leading: Builder(
+    //   builder: (context) => IconButton(
+    //     icon: Icon(
+    //       Icons.menu_rounded,
+    //       color: Colors.white,
+    //     ),
+    //     tooltip: "hello",
+    //   ),
+    // ),
     title: Text(
       "Attendance Check App",
       style: TextStyle(

@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:projet_decanat/services/parameter.dart';
 
 class HttpHelper {
-  static String host = "http://192.168.8.104:8000/";
+  static String host = "http://192.168.1.108:8000/";
   // static String host = "https://attendceappuy1.herokuapp.com/";
   static String loginUrl = 'api/users/signin';
   static String currentUsrUrl = "api/users/currentuser";

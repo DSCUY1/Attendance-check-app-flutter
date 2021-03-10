@@ -3,10 +3,10 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+// import 'package:http/http.dart';
 import 'package:projet_decanat/pages/error_page.dart';
 import 'package:projet_decanat/pages/verification.dart';
-import 'package:projet_decanat/widgets/dialog_show.dart';
+// import 'package:projet_decanat/widgets/dialog_show.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:projet_decanat/services/http_helper.dart';
 

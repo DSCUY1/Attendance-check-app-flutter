@@ -1,14 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:projet_decanat/pages/manually.dart';
 import 'package:projet_decanat/pages/scanner_page.dart';
-import 'package:flutter/services.dart';
 import 'package:projet_decanat/services/parameter.dart';
 import 'package:projet_decanat/widgets/customized_app_bar.dart';
 import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
 import 'package:projet_decanat/widgets/dialog_show.dart';
 import 'package:projet_decanat/widgets/infos.dart';
+import 'package:projet_decanat/widgets/left_drawer.dart';
 import 'package:projet_decanat/widgets/subtitle_text.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
 
@@ -38,9 +39,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // to hide only bottom bar:
-    //SystemChrome.setEnabledSystemUIOverlays ([SystemUiOverlay.top]);
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     // to hide only status bar:
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     // to hide both:
     // SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
@@ -51,6 +52,7 @@ class _HomeState extends State<Home> {
         MaterialPageRoute(builder: (_) => Manually());
     MaterialPageRoute routeInfos = MaterialPageRoute(builder: (_) => Infos());
     return Scaffold(
+      drawer: LeftDrawer(),
       appBar: customizedAppBar(context),
       bottomNavigationBar: customizedBottomNavigationBar(
           0, context, routeHome, routeManually, routeInfos),

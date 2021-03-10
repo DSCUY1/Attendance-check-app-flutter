@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:projet_decanat/pages/home.dart';
+// import 'package:projet_decanat/pages/home.dart';
 import 'package:projet_decanat/widgets/customized_button.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
 

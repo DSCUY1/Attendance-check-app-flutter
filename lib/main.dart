@@ -15,10 +15,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       title: 'Attendance Check App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
+      theme: ThemeData(
+        accentColor: Color(0xff6A4E77),
+      ),
       home: Splash(),
       routes: {
         // '/startPage': (context)=>StartPage()
