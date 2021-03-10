@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_decanat/pages/setting.dart';
 import 'package:projet_decanat/widgets/subtitle_text.dart';
 
 class MenuListTile extends StatefulWidget {
@@ -83,6 +84,12 @@ class _MenuListTileState extends State<MenuListTile> {
           ),
           onTap: () {
             Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Setting(),
+              ),
+            );
           },
         ),
         Divider(color: Colors.grey),

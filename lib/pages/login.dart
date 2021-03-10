@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_decanat/pages/home.dart';
 import 'package:flutter/services.dart';
 import 'package:projet_decanat/services/parameter.dart';
+import 'package:projet_decanat/widgets/alert_loader.dart';
 import 'package:projet_decanat/widgets/customized_button.dart';
 import 'package:projet_decanat/widgets/customized_input.dart';
 import 'package:projet_decanat/widgets/dialog_show.dart';
@@ -18,7 +20,8 @@ class _LoginState extends State<Login> {
   TextEditingController _email;
   TextEditingController _password;
   bool obscurciInput;
-  Icon eye;
+  Icon _eye;
+  bool _validated;
 
   @override
   void initState() {
@@ -26,7 +29,8 @@ class _LoginState extends State<Login> {
     _email = TextEditingController();
     _password = TextEditingController();
     obscurciInput = true;
-    eye = Icon(Icons.remove_red_eye);
+    _eye = Icon(Icons.remove_red_eye);
+    _validated = true;
   }
 
   @override
@@ -37,29 +41,40 @@ class _LoginState extends State<Login> {
   }
 
   void login() {
-    // MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
-    // Navigator.pop(context);
-    // Navigator.push(context, route);
-    String emailIn = _email.text;
-    String passwordIn = _password.text;
-    print("email: $emailIn");
-    print("password: $passwordIn");
-    HttpHelper.logIn(emailIn, passwordIn).then(
-      (response) {
-        if (response == "OK") {
-          currentuser();
-          // MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
-          // Navigator.pop(context);
-          // Navigator.push(context, route);
-        } else {
-          DialogShow dialog = DialogShow(
-            "Erreur",
-            "Parametres invalides",
-          );
-          dialog.showdialog(context);
-        }
-      },
-    );
+    MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+    Navigator.pop(context);
+    Navigator.push(context, route);
+    // AlertLoader();
+    print("login");
+    print(_validated);
+    // if (_email.text != "" && _password.text != "") {
+    //   setState(() {
+    //     _validated = false;
+    //   });
+    //   String emailIn = _email.text;
+    //   String passwordIn = _password.text;
+    //   print("email: $emailIn");
+    //   print("password: $passwordIn");
+    //   HttpHelper.logIn(emailIn, passwordIn).then(
+    //     (response) {
+    //       if (response == "OK") {
+    //         currentuser();
+    //         // MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+    //         // Navigator.pop(context);
+    //         // Navigator.push(context, route);
+    //       } else {
+    //         DialogShow dialog = DialogShow(
+    //           "Erreur",
+    //           "Parametres invalides",
+    //         );
+    //         dialog.showdialog(context);
+    //       }
+    //       setState(() {
+    //         _validated = true;
+    //       });
+    //     },
+    //   );
+    // }
   }
 
   void currentuser() {
@@ -138,11 +153,11 @@ class _LoginState extends State<Login> {
                 "Password",
                 "Your password goes here",
                 GestureDetector(
-                  child: eye,
+                  child: _eye,
                   onTap: () {
                     setState(() {
                       obscurciInput = !obscurciInput;
-                      eye = (obscurciInput)
+                      _eye = (obscurciInput)
                           ? Icon(Icons.remove_red_eye)
                           : Icon(Icons.lock); //TODO: changer l'icone
                     });
@@ -155,12 +170,14 @@ class _LoginState extends State<Login> {
               margin: EdgeInsets.only(
                 top: height * 0.04,
               ),
-              width: width * 0.9,
+              width: (!_validated) ? 50 : width * 0.9,
               height: height * 0.08,
-              child: CustomizedButton(
-                "LOGIN",
-                login,
-              ),
+              child: (_validated)
+                  ? CustomizedButton(
+                      "LOGIN",
+                      login,
+                    )
+                  : CircularProgressIndicator(),
             )
           ],
         ),
