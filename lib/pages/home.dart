@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projet_decanat/pages/manually.dart';
 import 'package:projet_decanat/pages/scanner_page.dart';
+import 'package:projet_decanat/services/http_helper.dart';
 import 'package:projet_decanat/services/parameter.dart';
 import 'package:projet_decanat/widgets/customized_app_bar.dart';
 import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
 import 'package:projet_decanat/widgets/dialog_show.dart';
-import 'package:projet_decanat/widgets/infos.dart';
+import 'package:projet_decanat/pages/infos.dart';
 import 'package:projet_decanat/widgets/left_drawer.dart';
 import 'package:projet_decanat/widgets/subtitle_text.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
@@ -32,18 +33,51 @@ class _HomeState extends State<Home> {
         );
         dialog.showdialog(context);
         Parameter.welcome = true;
+        getSupervisors();
+        getRooms();
+        getTimeRange();
       });
     }
+  }
+
+  void getSupervisors() {
+    HttpHelper.getSurveillants().then((response) {
+      if (response["statut"] == "OK") {
+      } else {
+        DialogShow dialog = DialogShow("Erreur", response["response"]);
+        dialog.showdialog(context);
+      }
+    });
+  }
+
+  void getRooms() {
+    HttpHelper.getRooms().then((response) {
+      if (response["statut"] == "OK") {
+      } else {
+        DialogShow dialog = DialogShow("Erreur", response["response"]);
+        dialog.showdialog(context);
+      }
+    });
+  }
+
+  void getTimeRange() {
+    HttpHelper.getTimeRanges().then((response) {
+      if (response["statut"] == "OK") {
+      } else {
+        DialogShow dialog = DialogShow("Erreur", response["response"]);
+        dialog.showdialog(context);
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     // to hide only bottom bar:
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
+    // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     // to hide only status bar:
     // SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     // to hide both:
-    // SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 

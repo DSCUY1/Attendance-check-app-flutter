@@ -8,7 +8,8 @@ import 'package:projet_decanat/widgets/attribute_text.dart';
 import 'package:projet_decanat/widgets/customized_app_bar.dart';
 import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
 import 'package:projet_decanat/widgets/customized_button.dart';
-import 'package:projet_decanat/widgets/infos.dart';
+import 'package:projet_decanat/widgets/dialog_show.dart';
+import 'package:projet_decanat/pages/infos.dart';
 import 'package:projet_decanat/widgets/subtitle_text.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
 import 'package:projet_decanat/widgets/value_text.dart';
@@ -27,11 +28,14 @@ class Verification extends StatelessWidget {
   void confirm(BuildContext context) {
     HttpHelper.markSupervisor(this.code).then(
       (response) {
-        if (response == "OK") {
+        if (response["statut"] == "OK") {
           MaterialPageRoute route =
               MaterialPageRoute(builder: (_) => Confirm());
           // Navigator.pop(context);
           Navigator.pushReplacement(context, route);
+        } else {
+          DialogShow dialog = DialogShow("Erreur", response["response"]);
+          dialog.showdialog(context);
         }
       },
     );

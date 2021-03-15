@@ -6,7 +6,7 @@ import 'package:projet_decanat/services/parameter.dart';
 import 'package:projet_decanat/widgets/attribute_text.dart';
 import 'package:projet_decanat/widgets/customized_app_bar.dart';
 import 'package:projet_decanat/widgets/customized_bottom_navigation_bar.dart';
-import 'package:projet_decanat/widgets/infos.dart';
+import 'package:projet_decanat/pages/infos.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
 import 'package:projet_decanat/widgets/value_text.dart';
 

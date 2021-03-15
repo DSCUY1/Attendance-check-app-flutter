@@ -41,40 +41,37 @@ class _LoginState extends State<Login> {
   }
 
   void login() {
-    MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
-    Navigator.pop(context);
-    Navigator.push(context, route);
+    // MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+    // Navigator.pop(context);
+    // Navigator.push(context, route);
     // AlertLoader();
     print("login");
     print(_validated);
-    // if (_email.text != "" && _password.text != "") {
-    //   setState(() {
-    //     _validated = false;
-    //   });
-    //   String emailIn = _email.text;
-    //   String passwordIn = _password.text;
-    //   print("email: $emailIn");
-    //   print("password: $passwordIn");
-    //   HttpHelper.logIn(emailIn, passwordIn).then(
-    //     (response) {
-    //       if (response == "OK") {
-    //         currentuser();
-    //         // MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
-    //         // Navigator.pop(context);
-    //         // Navigator.push(context, route);
-    //       } else {
-    //         DialogShow dialog = DialogShow(
-    //           "Erreur",
-    //           "Parametres invalides",
-    //         );
-    //         dialog.showdialog(context);
-    //       }
-    //       setState(() {
-    //         _validated = true;
-    //       });
-    //     },
-    //   );
-    // }
+    if (_email.text != "" && _password.text != "") {
+      setState(() {
+        _validated = false;
+      });
+      String emailIn = _email.text;
+      String passwordIn = _password.text;
+      print("email: $emailIn");
+      print("password: $passwordIn");
+      HttpHelper.logIn(emailIn, passwordIn).then(
+        (response) {
+          if (response["statut"] == "OK") {
+            currentuser();
+            // MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+            // Navigator.pop(context);
+            // Navigator.push(context, route);
+          } else {
+            DialogShow dialog = DialogShow("Erreur", response["response"]);
+            dialog.showdialog(context);
+          }
+          setState(() {
+            _validated = true;
+          });
+        },
+      );
+    }
   }
 
   void currentuser() {
@@ -86,17 +83,12 @@ class _LoginState extends State<Login> {
             Navigator.pop(context);
             Navigator.push(context, route);
           } else {
-            DialogShow dialog = DialogShow(
-              "Erreur",
-              "Vous n'etes pas un controller",
-            );
+            DialogShow dialog =
+                DialogShow("Erreur", "Vous n'etes pas un controller");
             dialog.showdialog(context);
           }
         } else {
-          DialogShow dialog = DialogShow(
-            "Erreur",
-            "Probleme de currentUser",
-          );
+          DialogShow dialog = DialogShow("Erreur", response["response"]);
           dialog.showdialog(context);
         }
       },

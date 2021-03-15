@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_decanat/pages/login.dart';
 import 'package:projet_decanat/services/http_helper.dart';
+import 'package:projet_decanat/widgets/dialog_show.dart';
 
 AppBar customizedAppBar(BuildContext context) {
   return AppBar(
@@ -30,13 +31,15 @@ AppBar customizedAppBar(BuildContext context) {
         onPressed: () {
           HttpHelper.logOut().then(
             (response) {
-              if (response == "OK") {
+              if (response["statut"] == "OK") {
                 MaterialPageRoute route =
                     MaterialPageRoute(builder: (_) => Login());
                 Navigator.pop(context);
                 Navigator.push(context, route);
               } else {
                 print("Impossible de logout");
+                DialogShow dialog = DialogShow("Erreur", response["response"]);
+                dialog.showdialog(context);
               }
             },
           );
