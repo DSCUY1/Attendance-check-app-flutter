@@ -21,12 +21,14 @@ class Verification extends StatelessWidget {
   final String date;
   final String room;
   final String timerange;
-  Verification(this.supervisor, this.code, this.date, this.room, this.timerange,
+  final String markCode;
+  Verification(this.markCode, this.supervisor, this.code, this.date, this.room,
+      this.timerange,
       {Key key})
       : super(key: key);
 
   void confirm(BuildContext context) {
-    HttpHelper.markSupervisor(this.code).then(
+    HttpHelper.markSupervisor(this.markCode).then(
       (response) {
         if (response["statut"] == "OK") {
           MaterialPageRoute route =

@@ -4,9 +4,10 @@ import 'package:projet_decanat/models/room.dart';
 import 'package:projet_decanat/models/supervisor.dart';
 import 'package:projet_decanat/models/time_range.dart';
 import 'package:projet_decanat/services/parameter.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class HttpHelper {
-  static String host = "http://192.168.225.201:8000/";
+  static String host = "http://192.168.8.100:8000/";
   // static String host = "https://attendceappuy1.herokuapp.com/";
   static String loginUrl = 'api/users/signin';
   static String currentUsrUrl = "api/users/currentuser";
@@ -91,6 +92,12 @@ class HttpHelper {
         Parameter.email = jsonMap["data"]["email"];
         Parameter.matricule = jsonMap["data"]["matricule"];
         Parameter.phone = jsonMap["data"]["phone"];
+        // final prefs = await SharedPreferences.getInstance();
+        // prefs.setString("first_name", Parameter.first_name);
+        // prefs.setString("last_name", Parameter.last_name);
+        // prefs.setString("email", Parameter.email);
+        // prefs.setString("matricule", Parameter.matricule);
+        // prefs.setString("phone", Parameter.phone);
       } else {
         print("status different de 200");
         response["response"] = "erreur ${result.statusCode}";
@@ -122,6 +129,7 @@ class HttpHelper {
             response["response"] = jsonMap["message"];
           } else {
             response["statut"] = "OK";
+            response["markCode"] = jsonMap["id_present"];
             response["supervisor"] = jsonMap["surv"]["name"];
             response["code"] = "${jsonMap["surv"]["id"]}";
             response["date"] = "ce jour";

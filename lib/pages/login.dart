@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projet_decanat/pages/home.dart';
-import 'package:flutter/services.dart';
-import 'package:projet_decanat/services/parameter.dart';
-import 'package:projet_decanat/widgets/alert_loader.dart';
+// import 'package:flutter/services.dart';
+// import 'package:projet_decanat/services/parameter.dart';
+// import 'package:projet_decanat/widgets/alert_loader.dart';
 import 'package:projet_decanat/widgets/customized_button.dart';
 import 'package:projet_decanat/widgets/customized_input.dart';
 import 'package:projet_decanat/widgets/dialog_show.dart';
 import 'package:projet_decanat/widgets/title_text.dart';
 import 'package:projet_decanat/services/http_helper.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -76,9 +77,12 @@ class _LoginState extends State<Login> {
 
   void currentuser() {
     HttpHelper.currentUser().then(
-      (response) {
+      (response) async {
         if (response["statut"] == "OK") {
           if (response["response"] == "2") {
+            // final prefs = await SharedPreferences.getInstance();
+            // prefs.setString("logged", "logged");
+
             MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
             Navigator.pop(context);
             Navigator.push(context, route);

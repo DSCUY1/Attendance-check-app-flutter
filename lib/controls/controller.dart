@@ -14,6 +14,7 @@ class Controller {
           if (surveillance["salle"]["id"] == roomId &&
               surveillance["Horaire"]["id"] == tmID) {
             roomTmOk = true;
+            result["markCode"] = surveillance["id_present"];
             result["statut"] = "OK";
             result["sup"] = sup.first_name + " " + sup.last_name;
             result["code"] = sup.id;

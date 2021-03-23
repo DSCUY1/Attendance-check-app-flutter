@@ -70,13 +70,13 @@ class _ManuallyState extends State<Manually> {
     super.dispose();
   }
 
-  void changePage() {
-    MaterialPageRoute route = MaterialPageRoute(
-        builder: (_) => Verification(
-            "Abdel Aziz MFOSSA", "103", "2/24/21", "NB4", "2pm - 4pm"));
-    // Navigator.pop(context);
-    Navigator.pushReplacement(context, route);
-  }
+  // void changePage() {
+  //   MaterialPageRoute route = MaterialPageRoute(
+  //       builder: (_) => Verification(
+  //           "Abdel Aziz MFOSSA", "103", "2/24/21", "NB4", "2pm - 4pm"));
+  //   // Navigator.pop(context);
+  //   Navigator.pushReplacement(context, route);
+  // }
 
   void chek() {
     List<String> supName = _supervisor.text.split(" ");
@@ -97,6 +97,7 @@ class _ManuallyState extends State<Manually> {
                   print("checked");
                   MaterialPageRoute route = MaterialPageRoute(
                     builder: (_) => Verification(
+                      checked["markCode"].toString(),
                       checked["sup"].toString(),
                       checked["code"].toString(),
                       checked["date"].toString(),

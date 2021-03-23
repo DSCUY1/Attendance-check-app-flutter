@@ -45,6 +45,7 @@ class _ScannerPageState extends State<ScannerPage> {
             if (response["statut"] == "OK") {
               MaterialPageRoute route = MaterialPageRoute(
                 builder: (_) => Verification(
+                  response["markCode"],
                   response["supervisor"],
                   response["code"],
                   response["date"],
@@ -52,7 +53,9 @@ class _ScannerPageState extends State<ScannerPage> {
                   response["timerange"],
                 ),
               );
-              Navigator.pop(context, );
+              Navigator.pop(
+                context,
+              );
               Navigator.push(context, route);
             } else {
               MaterialPageRoute route = MaterialPageRoute(
@@ -81,11 +84,10 @@ class _ScannerPageState extends State<ScannerPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  if (result != null)
-                    Text(
-                        'Barcode Type: ${describeEnum(result.format)}   Data: ${result.code}')
-                  else
-                    Text('Scan a code'),
+                  (result != null)
+                      ? Text(
+                          'Barcode Type: ${describeEnum(result.format)}   Data: ${result.code}')
+                      : Text('Scan a code'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
     // to hide both:
     SystemChrome.setEnabledSystemUIOverlays([]);
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
 
     MaterialPageRoute routeHome = MaterialPageRoute(builder: (_) => Home());
     MaterialPageRoute routeManually =

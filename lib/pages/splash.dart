@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_decanat/pages/home.dart';
+// import 'package:projet_decanat/services/parameter.dart';
 import 'dart:async';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:projet_decanat/pages/login.dart';
 import 'package:flutter/services.dart';
@@ -13,26 +16,44 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  TextEditingController _username;
-  TextEditingController _password;
   @override
   void initState() {
     super.initState();
-    _username = TextEditingController();
-    _password = TextEditingController();
     print("init");
     Timer(Duration(seconds: 3), () {
+      // initialisation();
       MaterialPageRoute route = MaterialPageRoute(builder: (_) => Login());
       Navigator.pop(context);
       Navigator.push(context, route);
     });
   }
 
-  @override
-  void dispose() {
-    _username.dispose();
-    _password.dispose();
-    super.dispose();
+  void initialisation() async {
+    // final prefs = await SharedPreferences.getInstance();
+    // final logged = prefs.getString("logged") ?? 0;
+    final dynamic logged = 0;
+    if (logged == 0) {
+      print("first using");
+      MaterialPageRoute route = MaterialPageRoute(builder: (_) => Login());
+      Navigator.pop(context);
+      Navigator.push(context, route);
+    }
+    if (logged == "logged") {
+      print("yet logged");
+      // Parameter.first_name = prefs.getString("first_name");
+      // Parameter.last_name = prefs.getString("last_name");
+      // Parameter.email = prefs.getString("email");
+      // Parameter.matricule = prefs.getString("matricule");
+      // Parameter.phone = prefs.getString("phone");
+      MaterialPageRoute route = MaterialPageRoute(builder: (_) => Home());
+      Navigator.pop(context);
+      Navigator.push(context, route);
+    } else {
+      print("Not yet logged");
+      MaterialPageRoute route = MaterialPageRoute(builder: (_) => Login());
+      Navigator.pop(context);
+      Navigator.push(context, route);
+    }
   }
 
   @override
