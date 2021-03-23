@@ -19,6 +19,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         accentColor: Color(0xff6A4E77),
+        primarySwatch: Color(0xff6A4E77),
       ),
       home: Splash(),
       routes: {
